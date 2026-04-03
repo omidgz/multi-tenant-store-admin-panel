@@ -4,8 +4,6 @@ A **multi-tenant SaaS-style admin control panel** for product and store manageme
 
 All tenants share the same infrastructure while maintaining strict data isolation through the application and database layers.
 
-![Architecture](https://via.placeholder.com/800x400?text=Architecture+Diagram)
-
 ## ✨ Features
 
 - Secure multi-tenant authentication with AWS Cognito
