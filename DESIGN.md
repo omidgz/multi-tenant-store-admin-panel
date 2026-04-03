@@ -25,7 +25,7 @@ This model is highly scalable and is commonly used by large SaaS platforms that 
 
 ## High-Level Architecture
 
-::: mermaid
+``` mermaid
 flowchart TD
     Users[Users<br/>Tenant Admins] 
     -->|HTTPS + JWT Token| ALB[AWS ALB + Ingress Controller]
@@ -54,7 +54,7 @@ flowchart TD
     style EKS fill:#e0f2fe,stroke:#0369a1,stroke-width:2px
     style Shared fill:#d1fae5,stroke:#10b981
     style TenantFilter fill:#fef3c7,stroke:#d97706
-:::
+```
 
 **Figure 1**: High-level architecture using Application-level Multi-Tenancy on a shared Amazon EKS cluster.
 
