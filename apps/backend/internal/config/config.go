@@ -12,6 +12,9 @@ type Config struct {
 	// Server Configuration
 	ServerPort string `env:"SERVER_PORT"`
 
+	// CORS Configuration
+	CORSAllowedOrigins string `env:"CORS_ALLOWED_ORIGINS"`
+
 	// AWS Configuration
 	AWSRegion string `env:"AWS_REGION"`
 
@@ -41,18 +44,19 @@ func Load() (*Config, error) {
 	_ = godotenv.Load()
 
 	cfg := &Config{
-		ServerPort:        getEnv("SERVER_PORT", "8080"),
-		AWSRegion:         getEnv("AWS_REGION", "us-east-1"),
-		PostgresHost:      getEnv("POSTGRES_HOST", "localhost"),
-		PostgresPort:      getEnv("POSTGRES_PORT", "5432"),
-		PostgresUser:      getEnv("POSTGRES_USER", "postgres"),
-		PostgresPassword:  getEnv("POSTGRES_PASSWORD", ""),
-		PostgresDB:        getEnv("POSTGRES_DB", "store_admin"),
-		PostgresSSLMode:   getEnv("POSTGRES_SSL_MODE", "disable"),
-		CognitoUserPoolID: getEnv("COGNITO_USER_POOL_ID", ""),
-		CognitoClientID:   getEnv("COGNITO_CLIENT_ID", ""),
-		TenantMode:        getEnv("TENANT_MODE", "header"),
-		Environment:       getEnv("ENVIRONMENT", "dev"),
+		ServerPort:         getEnv("SERVER_PORT", "8080"),
+		CORSAllowedOrigins: getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:3000"),
+		AWSRegion:          getEnv("AWS_REGION", "us-east-1"),
+		PostgresHost:       getEnv("POSTGRES_HOST", "localhost"),
+		PostgresPort:       getEnv("POSTGRES_PORT", "5432"),
+		PostgresUser:       getEnv("POSTGRES_USER", "postgres"),
+		PostgresPassword:   getEnv("POSTGRES_PASSWORD", ""),
+		PostgresDB:         getEnv("POSTGRES_DB", "store_admin"),
+		PostgresSSLMode:    getEnv("POSTGRES_SSL_MODE", "disable"),
+		CognitoUserPoolID:  getEnv("COGNITO_USER_POOL_ID", ""),
+		CognitoClientID:    getEnv("COGNITO_CLIENT_ID", ""),
+		TenantMode:         getEnv("TENANT_MODE", "header"),
+		Environment:        getEnv("ENVIRONMENT", "dev"),
 	}
 
 	// Build Cognito JWKS URL if User Pool ID is provided
