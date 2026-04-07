@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/omidgz/multi-tenant-store-admin-panel/apps/backend/internal/config"
@@ -35,6 +36,16 @@ func main() {
 	// Set up Gin router
 	r := gin.Default()
 	r.Use(gin.Recovery())
+
+	// CORS middleware
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "X-Tenant-ID"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
+
 	r.Use(middleware.TenantMiddleware(cfg))
 
 	// Routes
